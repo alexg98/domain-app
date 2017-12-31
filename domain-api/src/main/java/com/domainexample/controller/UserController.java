@@ -51,7 +51,8 @@ public class UserController {
 		if(user.getId() == null) {
 			throw new Exception("El id esta nulo");
 		}
-		this.userService.deleteUser(user.getId());
+		//this.userService.deleteUser(user.getId());
+		this.userService.deleteUser(user);
 		
 	}
 	

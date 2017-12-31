@@ -16,12 +16,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.domain</groupId>
-			<artifactId>domain-service</artifactId>
+			<artifactId>domain-utilities</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.domain</groupId>
-			<artifactId>domain-utilities</artifactId>
+			<artifactId>domain-daohibernate</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

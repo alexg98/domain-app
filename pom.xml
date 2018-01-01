@@ -22,8 +22,7 @@
 	<modules>
 		<module>domain-api</module>
 		<module>domain-service</module>
-		<module>domain-utilities</module>
-		
+		<module>domain-utilities</module>		
 		<module>domain-daohibernate</module>
 	</modules>
 	

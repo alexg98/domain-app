@@ -1,6 +1,8 @@
 package com.domainexample.model;
 
-public class User {//extends ParentEntity{
+import java.io.Serializable;
+
+public class User implements Serializable{//extends ParentEntity{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -44,6 +46,5 @@ public class User {//extends ParentEntity{
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
+	}	
 }

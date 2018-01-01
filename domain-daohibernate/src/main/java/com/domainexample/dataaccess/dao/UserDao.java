@@ -11,5 +11,9 @@ public class UserDao extends AbstractDomainexampleDAO<User> implements IUserDao 
 
 	/** Constant IDFILES. */
 	public static final String ID = "id";
+	
+	public UserDao() {
+		super(User.class);
+	}
 
 }

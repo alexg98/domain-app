@@ -47,8 +47,29 @@ public class HibernateConfig {
 		dataSource.setUsername(env.getRequiredProperty("datasource.username"));
 		dataSource.setPassword(env.getRequiredProperty("datasource.password"));
 		return dataSource;
+	}	
+	
+	@Bean
+	public LocalSessionFactoryBean getSessionFactory() {
+		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+		sessionFactory.setDataSource(getDataSource());
+		sessionFactory.setPackagesToScan(new String[] { "com.domainexample.model" });
+		sessionFactory.setHibernateProperties(getHibernateProperties());
+		sessionFactory.setMappingLocations(loadResources());
+		return sessionFactory;
 	}
-
+	/**
+	 * Initialize Transaction Manager
+	 * 
+	 * @param sessionFactory
+	 * @return HibernateTransactionManager
+	 */
+	@Bean
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory);
+		return txManager;
+	}
 	/**
 	 * Initialize hibernate properties
 	 * 
@@ -63,7 +84,10 @@ public class HibernateConfig {
 		properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current.session.context.class"));
 		return properties;
 	}
-	
+	/**
+	 * Load all file mapping
+	 * @return
+	 */
 	public Resource[] loadResources() {
 	    Resource[] resources = null;
 	    try {
@@ -73,29 +97,5 @@ public class HibernateConfig {
 	        e.printStackTrace();
 	    }
 	    return resources;
-	}
-	
-	@Bean
-	public LocalSessionFactoryBean getSessionFactory() {
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.domainexample.model" });
-		sessionFactory.setHibernateProperties(getHibernateProperties());
-		sessionFactory.setMappingLocations(loadResources());
-		return sessionFactory;
-	}
-
-
-	/**
-	 * Initialize Transaction Manager
-	 * 
-	 * @param sessionFactory
-	 * @return HibernateTransactionManager
-	 */
-	@Bean
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager txManager = new HibernateTransactionManager();
-		txManager.setSessionFactory(sessionFactory);
-		return txManager;
 	}
 }

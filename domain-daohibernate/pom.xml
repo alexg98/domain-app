@@ -5,7 +5,7 @@
     <artifactId>domain-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>domain-daohibernate</artifactId>
+  <artifactId>dao-hibernate</artifactId>
   
   <dependencies>
   	<dependency>

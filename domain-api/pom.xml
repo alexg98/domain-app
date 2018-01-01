@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.domain</groupId>
-			<artifactId>domain-daohibernate</artifactId>
+			<artifactId>dao-hibernate</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

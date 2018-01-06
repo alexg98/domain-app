@@ -1,7 +1,9 @@
 package com.domainexample.dataaccess.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -108,4 +110,12 @@ public interface IAbstractDomainexampleDAO<T> {
 	 * @param entity that will be removed from session
 	 */
 	void evictEntityFromSession(T entity);
+	
+	Query getNamedQuery(String queryName);
+	/**
+	 * Devulve el resulset en un Map clave valor
+	 * @param queryName
+	 * @return
+	 */
+	public <T> List<Map<String,T>> getNamedQueryMap(String queryName);
 }

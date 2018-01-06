@@ -1,13 +1,18 @@
 package com.domainexample.dataaccess.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.domainexample.model.MapValue;
 
 /**
  * The Class AbstractDomainexampleDAO representing the common Data Access methods
@@ -211,4 +216,23 @@ public abstract class AbstractDomainexampleDAO<T> {
 	public void evictEntityFromSession(T entity) {
 		getSession().evict(entity);
 	}
+	
+	public Query getNamedQuery(String queryName) {
+		return getSession().getNamedQuery(queryName);
+	}
+	/**
+	 * Devulve el resulset en un Map clave valor
+	 * @param queryName
+	 * @return
+	 */
+	public <T> List<Map<String,T>> getNamedQueryMap(String queryName) {
+		SQLQuery query = (SQLQuery)getSession().getNamedQuery(queryName);
+		query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		List<Map<String,T>> result = query.list();
+		
+		result.forEach(item -> { 
+				item.forEach( (k,v) -> item.put(k, (T)new MapValue(v)));  
+			});	
+		return result;
+	}	
 }

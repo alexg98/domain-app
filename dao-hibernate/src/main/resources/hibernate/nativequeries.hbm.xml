@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<sql-query name="test">
+		<return-scalar column="announcementId" type="java.lang.Long" />
+		<return-scalar column="userId" type="java.lang.Long" />
+		<return-scalar column="title" type="java.lang.String" />		
+		 <![CDATA[
+			select id_announcement announcementId,id_user userId, title_announcement title
+			from anu_announcements 
+		]]>
+	</sql-query>
+	
+</hibernate-mapping>

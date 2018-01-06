@@ -15,5 +15,4 @@ public class UserDao extends AbstractDomainexampleDAO<User> implements IUserDao 
 	public UserDao() {
 		super(User.class);
 	}
-
 }

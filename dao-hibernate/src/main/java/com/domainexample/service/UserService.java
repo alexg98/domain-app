@@ -22,5 +22,5 @@ public interface UserService {
 	 */
 	void deleteUser(User user);
 
-
+	public void test(User user);
 }

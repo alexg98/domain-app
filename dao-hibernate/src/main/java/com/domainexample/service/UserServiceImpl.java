@@ -1,12 +1,14 @@
 package com.domainexample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.domainexample.dataaccess.dao.IUserDao;
+import com.domainexample.model.MapValue;
 import com.domainexample.model.User;
 
 @Service
@@ -29,5 +31,30 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(User user) {		
 		this.userDao.delete(user);	
+	}
+	
+	@Override
+	public void test(User user) {		
+		List<Map<String,MapValue<Object>>>  result = this.userDao.getNamedQueryMap("test");
+		
+		result.forEach(item -> {
+			item.forEach( (k,v) ->  System.out.println(k+" valor " + v.value() + " type "  + v.value().getClass()) );
+		});
+		
+		Map<String, MapValue<Object>> resultado = result.get(0);
+		String titulo = resultado.get("title").value();
+		Long userId = resultado.get("userId").value();   
+		Long announcementId = resultado.get("announcementId").value();   
+				
+		System.out.println(titulo+ " - "+userId+" "+announcementId);
+		
+		String test = convetOut("valor");
+		Long test2 = convetOut(12222l);
+		//Integer test3 = convetOut(new StringBuffer());
+		//System.out.println(test+test2+test3);
+	}
+	
+	private <T> T convetOut(Object value) {
+		return (T)value;
 	}
 }

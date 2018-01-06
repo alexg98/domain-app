@@ -63,6 +63,7 @@ public class UserController {
 	
 	@RequestMapping(value ="/public", method = RequestMethod.GET)
 	public String getPublic() {
+		this.userService.test(null);
 		return "Acceso metodo publico";
 	} 
 	

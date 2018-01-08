@@ -10,8 +10,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.domainexample.extendhibernate.QueryCustom;
 import com.domainexample.model.MapValue;
 
 /**
@@ -30,6 +32,8 @@ public abstract class AbstractDomainexampleDAO<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
+	private QueryCustom queryCustom;
 	/**
 	 * Creates a new instance of AbstractDomainexampleDAO.
 	 */
@@ -217,22 +221,38 @@ public abstract class AbstractDomainexampleDAO<T> {
 		getSession().evict(entity);
 	}
 	
-	public Query getNamedQuery(String queryName) {
-		return getSession().getNamedQuery(queryName);
+	public QueryCustom getNamedQuery(String queryName) {
+		return queryCustom.getNamedQuery(queryName);
 	}
 	/**
-	 * Devulve el resulset en un Map clave valor
+	 * Apply a ResultTransformer to native SQL queries
+	 * @param queryName
+	 * @param type
+	 * @return
+	 */
+	public QueryCustom getNamedQueryTransoformDto(String queryName, Class<T> type) {
+		return getNamedQuery(queryName)
+				.setResultTransformer(Transformers.aliasToBean( type ));
+	}
+	
+	/**
+	 * Devuelve el resulset en un Map clave valor
 	 * @param queryName
 	 * @return
 	 */
-	public <T> List<Map<String,T>> getNamedQueryMap(String queryName) {
-		SQLQuery query = (SQLQuery)getSession().getNamedQuery(queryName);
-		query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-		List<Map<String,T>> result = query.list();
-		
-		result.forEach(item -> { 
-				item.forEach( (k,v) -> item.put(k, (T)new MapValue(v)));  
-			});	
-		return result;
+	public <T> List<Map<String,T>> getNamedQueryMap(String queryName) {	
+		try {
+			SQLQuery query = (SQLQuery)getSession().getNamedQuery(queryName);
+			query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+			List<Map<String,T>> result = query.list();
+			
+			result.forEach(item -> { 
+					item.forEach( (k,v) -> item.put(k, (T)new MapValue(v)));  
+				});	
+			return result;
+		} catch (ClassCastException e) {
+			StackTraceElement[] trace = e.getStackTrace();
+			throw new RuntimeException("[Excepcion 101] Solo aplica para consultas nativas , error : " + trace[0],e);
+		}		
 	}	
 }

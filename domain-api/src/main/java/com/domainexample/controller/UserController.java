@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
-public class UserController {
+public class UserController extends ParentException{
 
 	@Autowired
 	protected UserService userService;

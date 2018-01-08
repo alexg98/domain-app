@@ -8,7 +8,7 @@
   <artifactId>dao-hibernate</artifactId>
   
   <dependencies>
-  	<dependency>
+  		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
@@ -23,6 +23,7 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.domain</groupId>
 			<artifactId>domain-utilities</artifactId>

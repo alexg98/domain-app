@@ -8,8 +8,28 @@
 		<return-scalar column="userId" type="java.lang.Long" />
 		<return-scalar column="title" type="java.lang.String" />		
 		 <![CDATA[
-			select id_announcement announcementId,id_user userId, title_announcement title
-			from anu_announcements 
+			select guid announcementId,userguid userId, name title
+			from public.course where userId = :userId
+		]]>
+	</sql-query>
+	
+	<query name="getTipoAuxilios">				
+		 <![CDATA[
+			select model from User model 
+		]]>
+	</query>
+	
+	<query name="getTipoAuxilios.con.param">				
+		select model from User model where model.id in (:id)
+	</query>
+	
+	<sql-query name="getTipoAuxilios2">				
+		<return-scalar column="announcementId" type="java.lang.Long" />
+		<return-scalar column="userId" type="java.lang.Long" />
+		<return-scalar column="title" type="java.lang.String" />		
+		 <![CDATA[
+			select guid announcementId,userguid userId, name title
+			from public.course
 		]]>
 	</sql-query>
 	

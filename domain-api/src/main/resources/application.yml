@@ -1,0 +1,14 @@
+# LOGGING
+logging:
+#  file: /var/log/springboot/exception-handling
+  file: C:\Users\alge3325\log\exception-handling
+  level: 
+    org.springframework.web: ERROR
+
+
+server:
+  tomcat:
+    access-log-enabled: true
+    access-log-pattern: "%h %l %u %t \"%r\" %s %b %D \"%{Referer}i\" \"%{User-agent}i\""
+#    basedir : /var/log/springboot
+    basedir : C:\Users\alge3325\log\springboot

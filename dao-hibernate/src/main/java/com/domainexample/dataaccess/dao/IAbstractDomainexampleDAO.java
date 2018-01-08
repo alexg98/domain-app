@@ -6,6 +6,8 @@ import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.domainexample.extendhibernate.QueryCustom;
+
 /**
  * The Interface IAbstractDomainexampleDAO enclosing the common transactional methods.
  *
@@ -111,11 +113,18 @@ public interface IAbstractDomainexampleDAO<T> {
 	 */
 	void evictEntityFromSession(T entity);
 	
-	Query getNamedQuery(String queryName);
+	QueryCustom getNamedQuery(String queryName);
 	/**
 	 * Devulve el resulset en un Map clave valor
 	 * @param queryName
 	 * @return
 	 */
 	public <T> List<Map<String,T>> getNamedQueryMap(String queryName);
+	/**
+	 * Apply a ResultTransformer to native SQL queries
+	 * @param queryName
+	 * @param type
+	 * @return
+	 */
+	Query getNamedQueryTransoformDto(String queryName, Class<T> type);
 }

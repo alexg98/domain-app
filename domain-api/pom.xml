@@ -16,10 +16,29 @@
 		</dependency>
 		
 		<dependency>
+         	<groupId>javax</groupId>
+         	<artifactId>javaee-web-api</artifactId>
+         	<version>7.0</version>
+         	<scope>provided</scope>
+      	</dependency>
+      
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			 <!--  descomentar para despliegue en jboss EAP - exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions-->
 		</dependency>
-				
+		
+		<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-tomcat</artifactId>
+        	<scope>provided</scope>
+    	</dependency> 
+    		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -44,7 +63,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.domainexample.DomainSpringBootApplication.java</mainClass>
+					<mainClass>com.domainexample.DomainSpringBootApplication</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
 				<executions>
@@ -57,4 +76,16 @@
 			</plugin>			
 		</plugins>
 	</build>	
+	
+	<repositories>
+      <repository>
+        <id>spring-milestones</id>
+        <name>Spring Milestones</name>
+        <url>http://repo.spring.io/milestone</url>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+     </repository>
+   </repositories>
+   
 </project>

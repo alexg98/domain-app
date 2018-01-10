@@ -24,6 +24,8 @@
 		<module>domain-service</module>
 		<module>domain-utilities</module>		
 		<module>dao-hibernate</module>
+		<module>domain-bpm</module>
+		<module>database-util</module>
 	</modules>
 	
 	<build>

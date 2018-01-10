@@ -1,4 +1,4 @@
-package com.domainexample.dataaccess.dao;
+package co.com.sipas.databaseutil.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -6,8 +6,7 @@ import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.domainexample.extendhibernate.QueryCustom;
-
+import co.com.sipas.databaseutil.extendhibernate.QueryCustom;
 /**
  * The Interface IAbstractDomainexampleDAO enclosing the common transactional methods.
  *

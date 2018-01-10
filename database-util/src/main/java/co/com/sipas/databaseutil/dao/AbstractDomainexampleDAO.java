@@ -1,4 +1,4 @@
-package com.domainexample.dataaccess.dao;
+package co.com.sipas.databaseutil.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -11,10 +11,10 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.domainexample.extendhibernate.QueryCustom;
-import com.domainexample.model.MapValue;
+import co.com.sipas.databaseutil.extendhibernate.QueryCustom;
+import co.com.sipas.databaseutil.model.MapValue;
+
 
 /**
  * The Class AbstractDomainexampleDAO representing the common Data Access methods
@@ -29,16 +29,14 @@ public abstract class AbstractDomainexampleDAO<T> {
 	private Class<T> type;
 
 	/** The session factory. */
-	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Autowired
 	private QueryCustom queryCustom;
 	/**
 	 * Creates a new instance of AbstractDomainexampleDAO.
 	 */
 	public AbstractDomainexampleDAO() {
-
+		
 	}
 
 	/**
@@ -46,8 +44,10 @@ public abstract class AbstractDomainexampleDAO<T> {
 	 * 
 	 * @param type the type
 	 */
-	public AbstractDomainexampleDAO(Class<T> type) {
+	public AbstractDomainexampleDAO(Class<T> type,SessionFactory sessionFactory) {
+		queryCustom = new QueryCustom();
 		this.type = type;
+		this.sessionFactory = sessionFactory;
 	}
 
 	/**
@@ -222,7 +222,7 @@ public abstract class AbstractDomainexampleDAO<T> {
 	}
 	
 	public QueryCustom getNamedQuery(String queryName) {
-		return queryCustom.getNamedQuery(queryName);
+		return queryCustom.getNamedQuery(getSession(),queryName);
 	}
 	/**
 	 * Apply a ResultTransformer to native SQL queries

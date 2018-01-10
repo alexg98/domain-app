@@ -1,4 +1,4 @@
-package com.domainexample.model;
+package co.com.sipas.databaseutil.model;
 /**
  * Clase generica para casteo automatico del resulmapping
  * @author alexg

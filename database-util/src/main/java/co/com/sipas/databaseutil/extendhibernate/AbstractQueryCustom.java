@@ -1,4 +1,4 @@
-package com.domainexample.extendhibernate;
+package co.com.sipas.databaseutil.extendhibernate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

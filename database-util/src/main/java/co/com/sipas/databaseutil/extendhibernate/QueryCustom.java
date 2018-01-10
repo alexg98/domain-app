@@ -1,23 +1,17 @@
-package com.domainexample.extendhibernate;
+package co.com.sipas.databaseutil.extendhibernate;
 
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.SessionFactory;
+import org.hibernate.Session;
 import org.hibernate.transform.ResultTransformer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public class QueryCustom extends AbstractQueryCustom implements IQueryCustom{	
 		
-	private Query query;
+	private Query query;	
 	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public QueryCustom getNamedQuery(String name) {
-		this.query = sessionFactory.getCurrentSession().getNamedQuery(name);
+	public QueryCustom getNamedQuery(Session session, String name) {
+		this.query = session.getNamedQuery(name);
 		return this;
 	}
 	

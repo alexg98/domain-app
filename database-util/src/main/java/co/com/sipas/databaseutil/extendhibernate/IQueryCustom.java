@@ -1,4 +1,4 @@
-package com.domainexample.extendhibernate;
+package co.com.sipas.databaseutil.extendhibernate;
 
 import org.hibernate.Query;
 

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.domainexample.dataaccess.dao.IUserDao;
-import com.domainexample.model.MapValue;
 import com.domainexample.model.User;
+
+import co.com.sipas.databaseutil.model.MapValue;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
 			item.forEach( (k,v) ->  System.out.println(k+" valor " + v.value() + " type "  + v.value().getClass()) );
 		});
 		
-		List lis = this.userDao.getNamedQuery("getTipoAuxilios.con.param").setParam("id", new Long[] { 1l,2l}).addQueryHint("ddd").list();
+		List lis = this.userDao.getNamedQuery("getTipoAuxilios.con.param").setParam("id", new Long[] { 1l,2l}).list();
 				
 		Map<String, MapValue<Object>> resultado = result.get(0);
 		String titulo = resultado.get("title").value();

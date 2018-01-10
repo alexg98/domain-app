@@ -1,4 +1,4 @@
-package com.domainexample.config;
+package com.domainexample.bpm.config;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
@@ -28,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource(value = { "classpath:application.properties" })
-public class HibernateConfig {
+public class HibernateBpmConfig {
 
 	@Autowired
 	private Environment env;
@@ -41,23 +40,21 @@ public class HibernateConfig {
 	 * 
 	 * @return DataSource
 	 */
-	@Primary
-	@Bean(name = "dataSource")	
-	public DataSource getDataSource() {
+	@Bean(name = "dataSourceBpm")
+	public DataSource getDataSourceBpm() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(env.getRequiredProperty("datasource.common.driver"));
-		dataSource.setUrl(env.getRequiredProperty("datasource.common.url"));
-		dataSource.setUsername(env.getRequiredProperty("datasource.common.username"));
-		dataSource.setPassword(env.getRequiredProperty("datasource.common.password"));
+		dataSource.setDriverClassName(env.getRequiredProperty("datasource.bpm.driver"));
+		dataSource.setUrl(env.getRequiredProperty("datasource.bpm.url"));
+		dataSource.setUsername(env.getRequiredProperty("datasource.bpm.username"));
+		dataSource.setPassword(env.getRequiredProperty("datasource.bpm.password"));
 		return dataSource;
 	}	
 	
-	@Primary
-	@Bean(name = "sessionFactory")	
+	@Bean(name = "sessionBpmFactory")
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.domainexample.model" });
+		sessionFactory.setDataSource(getDataSourceBpm());
+		sessionFactory.setPackagesToScan(new String[] { "com.domainexample.bpm.model" });
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		sessionFactory.setMappingLocations(loadResources());
 		return sessionFactory;
@@ -68,11 +65,10 @@ public class HibernateConfig {
 	 * @param sessionFactory
 	 * @return HibernateTransactionManager
 	 */
-	@Primary
-	@Bean(name ="hibernateTransactionManager")		
-	public HibernateTransactionManager transactionManager2(@Qualifier("sessionFactory")SessionFactory sessionFactory) {
+	@Bean(name = "hibernateBpmTransactionManager")
+	public HibernateTransactionManager transactionManagerBpm(@Qualifier("sessionBpmFactory") SessionFactory sessionBpmFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
-		txManager.setSessionFactory(sessionFactory);
+		txManager.setSessionFactory(sessionBpmFactory);
 		return txManager;
 	}
 	/**
@@ -97,7 +93,7 @@ public class HibernateConfig {
 	    Resource[] resources = null;
 	    try {
 	        resources = ResourcePatternUtils.getResourcePatternResolver(rl)
-	                .getResources("classpath:/hibernate/*.hbm.xml");
+	                .getResources("classpath:/hibernate/bpm/*.hbm.xml");
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

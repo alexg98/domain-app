@@ -4,15 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.domainexample.bpm.dataaccess.dao.IPersonDao;
+import com.domainexample.bpm.model.Person;
 import com.domainexample.dataaccess.dao.IUserDao;
 
 import co.com.coomeva.sipas.core.model.SipParametros;
 import co.com.coomeva.sipas.core.model.User;
-import co.com.sipas.databaseutil.model.MapValue;
 
 
 
@@ -22,7 +27,19 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	protected IUserDao userDao;
+	
+	@Autowired
+	private TaskService taskService;
 			
+	@Autowired
+	private IPersonDao personRepository;
+	
+	@Autowired
+	private RuntimeService runtimeService;
+	
+	@Autowired
+	private RepositoryService repositoryService;
+	
 	@Override
 	public User save(User user) {
 		return userDao.save(user);
@@ -38,13 +55,32 @@ public class UserServiceImpl implements UserService {
 		this.userDao.delete(user);	
 	}
 	
+	@Transactional(readOnly=false)
+	public String transaccion() {
+		Person person = personRepository.findById(1l);// Property("name", assignee).get(0);
+
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("person", person);
+
+		runtimeService.startProcessInstanceByKey("simpleProcess", variables);
+
+		return processInfo();
+	}
+	
 	@Override
+	@Transactional(readOnly=false)
 	public void test(User user) {		
 		
 		List<SipParametros> listn = this.userDao.getNamedQuery("getTipoAuxilios").list();
 		listn.forEach(item -> System.out.println(item.getNombre() +" "+item.getId().getCodigo() ));
 		
+		System.out.println( transaccion() );
+		boolean flag = false;
 		
+		if(flag) {
+			throw new RuntimeException(" -- rollback controlado --- ");
+		}
+		/*
 		//List<Map<String,MapValue<Object>>> result = this.userDao.getNamedQueryMap("test");
 		List<Map<String,MapValue<Object>>> result = this.userDao.getNamedQueryMap("getTipoAuxilios2");
 		
@@ -73,8 +109,24 @@ public class UserServiceImpl implements UserService {
 			.setParameter("wqwq", 11111l).list();
 		
 		List<User> list2 = this.userDao.getNamedQuery("\"test\"").list();
+		*/
 		
+	}
+	
+	private String processInfo() {
+		List<Task> tasks = taskService.createTaskQuery().orderByTaskCreateTime().asc().list();
 		
+		StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Number of process definitions : "
+				+ repositoryService.createProcessDefinitionQuery().count() + "--> Tasks >> ");
+
+		for (Task task : tasks) {
+			stringBuilder
+					.append(task + " | Assignee: " + task.getAssignee() + " | Description: " + task.getDescription());
+		}
+
+		return stringBuilder.toString();
 	}
 	
 	private <T> T convetOut(Object value) {

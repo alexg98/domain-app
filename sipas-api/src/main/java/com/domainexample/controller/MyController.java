@@ -29,6 +29,12 @@ public class MyController {
 		return tasks.toString();
 	}
 
+	@RequestMapping(value = "/tasks/all")
+	public String getTasks() {
+		List<Task> tasks = myService.findAllTaskUser();
+		return tasks.toString();
+	}
+	
 	@RequestMapping(value = "/completetask")
 	public String completeTask(@RequestParam String id) {
 		myService.completeTask(id);

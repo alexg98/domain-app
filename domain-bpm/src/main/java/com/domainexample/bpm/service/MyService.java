@@ -51,6 +51,10 @@ public class MyService {
 		taskService.complete(taskId);
 	}
 
+	public List<Task> findAllTaskUser(){
+		return taskService.createNativeTaskQuery().list();
+	} 
+	
 	public void createPersons() {
 		if (personRepository.findAll().size() == 0) {
 

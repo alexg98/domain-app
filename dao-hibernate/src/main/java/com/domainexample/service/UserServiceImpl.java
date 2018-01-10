@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.domainexample.bpm.dataaccess.dao.IPersonDao;
 import com.domainexample.bpm.model.Person;
+import com.domainexample.dataaccess.dao.ISipParametroDao;
 import com.domainexample.dataaccess.dao.IUserDao;
 
 import co.com.coomeva.sipas.core.model.SipParametros;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	protected IUserDao userDao;
+	
+	@Autowired
+	protected ISipParametroDao sipParametroDao;
 	
 	@Autowired
 	private TaskService taskService;
@@ -72,6 +76,7 @@ public class UserServiceImpl implements UserService {
 	public void test(User user) {		
 		
 		List<SipParametros> listn = this.userDao.getNamedQuery("getTipoAuxilios").list();
+
 		listn.forEach(item -> System.out.println(item.getNombre() +" "+item.getId().getCodigo() ));
 		
 		System.out.println( transaccion() );

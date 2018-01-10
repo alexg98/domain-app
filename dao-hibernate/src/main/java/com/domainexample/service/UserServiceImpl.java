@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.domainexample.dataaccess.dao.IUserDao;
-import com.domainexample.model.User;
 
+import co.com.coomeva.sipas.core.model.SipParametros;
+import co.com.coomeva.sipas.core.model.User;
 import co.com.sipas.databaseutil.model.MapValue;
+
 
 
 @Service
@@ -38,6 +40,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void test(User user) {		
+		
+		List<SipParametros> listn = this.userDao.getNamedQuery("getTipoAuxilios").list();
+		listn.forEach(item -> System.out.println(item.getNombre() +" "+item.getId().getCodigo() ));
+		
+		
 		//List<Map<String,MapValue<Object>>> result = this.userDao.getNamedQueryMap("test");
 		List<Map<String,MapValue<Object>>> result = this.userDao.getNamedQueryMap("getTipoAuxilios2");
 		

@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@PropertySource(value = { "classpath:application.properties" })
+@PropertySource(value = { "classpath:db2.properties" })
 public class HibernateConfig {
 
 	@Autowired
@@ -41,18 +41,17 @@ public class HibernateConfig {
 	 * 
 	 * @return DataSource
 	 */
-	@Primary
 	@Bean(name = "dataSource")	
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(env.getRequiredProperty("datasource.common.driver"));
-		dataSource.setUrl(env.getRequiredProperty("datasource.common.url"));
-		dataSource.setUsername(env.getRequiredProperty("datasource.common.username"));
-		dataSource.setPassword(env.getRequiredProperty("datasource.common.password"));
+		dataSource.setDriverClassName(env.getRequiredProperty("datasource.driver"));
+		dataSource.setUrl(env.getRequiredProperty("datasource.url"));
+		dataSource.setUsername(env.getRequiredProperty("datasource.username"));
+		dataSource.setPassword(env.getRequiredProperty("datasource.password"));
 		return dataSource;
+		
 	}	
 	
-	@Primary
 	@Bean(name = "sessionFactory")	
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -68,7 +67,6 @@ public class HibernateConfig {
 	 * @param sessionFactory
 	 * @return HibernateTransactionManager
 	 */
-	@Primary
 	@Bean(name ="hibernateTransactionManager")		
 	public HibernateTransactionManager transactionManager2(@Qualifier("sessionFactory")SessionFactory sessionFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();

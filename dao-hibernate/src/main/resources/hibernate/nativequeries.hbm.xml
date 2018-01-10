@@ -3,6 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
+	<query name="getTipoAuxilios">
+		select model from SipParametros model
+	</query>
+	
+<!-- 
 	<sql-query name="test">
 		<return-scalar column="announcementId" type="java.lang.Long" />
 		<return-scalar column="userId" type="java.lang.Long" />
@@ -32,5 +37,5 @@
 			from public.course
 		]]>
 	</sql-query>
-	
+	 -->
 </hibernate-mapping>

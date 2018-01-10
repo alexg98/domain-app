@@ -6,7 +6,7 @@
 		<artifactId>domain-app</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>domain-api</artifactId>
+	<artifactId>sipas-api</artifactId>
 	<packaging>war</packaging>
 	
 	<dependencies>

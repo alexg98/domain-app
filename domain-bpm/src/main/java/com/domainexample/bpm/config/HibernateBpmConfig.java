@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
@@ -40,6 +41,7 @@ public class HibernateBpmConfig {
 	 * 
 	 * @return DataSource
 	 */
+	@Primary
 	@Bean(name = "dataSourceBpm")
 	public DataSource getDataSourceBpm() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -49,7 +51,7 @@ public class HibernateBpmConfig {
 		dataSource.setPassword(env.getRequiredProperty("datasource.bpm.password"));
 		return dataSource;
 	}	
-	
+	@Primary
 	@Bean(name = "sessionBpmFactory")
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -65,6 +67,7 @@ public class HibernateBpmConfig {
 	 * @param sessionFactory
 	 * @return HibernateTransactionManager
 	 */
+	@Primary
 	@Bean(name = "hibernateBpmTransactionManager")
 	public HibernateTransactionManager transactionManagerBpm(@Qualifier("sessionBpmFactory") SessionFactory sessionBpmFactory) {
 		HibernateTransactionManager txManager = new HibernateTransactionManager();

@@ -19,13 +19,13 @@
 		<java.version>1.8</java.version>
 	</properties>
 	
-	<modules>
-		<module>domain-api</module>
+	<modules>		
 		<module>domain-service</module>
 		<module>domain-utilities</module>		
 		<module>dao-hibernate</module>
 		<module>domain-bpm</module>
 		<module>database-util</module>
+		<module>sipas-api</module>
 	</modules>
 	
 	<build>

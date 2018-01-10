@@ -1,4 +1,4 @@
-package com.domainexample.model;
+package co.com.coomeva.sipas.core.model;
 
 import java.io.Serializable;
 

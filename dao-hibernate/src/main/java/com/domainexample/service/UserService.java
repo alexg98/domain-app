@@ -2,7 +2,7 @@ package com.domainexample.service;
 
 import java.util.List;
 
-import com.domainexample.model.User;
+import co.com.coomeva.sipas.core.model.User;
 
 public interface UserService {
 

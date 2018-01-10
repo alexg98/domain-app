@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import com.domainexample.model.User;
+import co.com.coomeva.sipas.core.model.User;
 
 @Scope("singleton")
 @Repository("userDao")

@@ -46,13 +46,13 @@
 		
 		<dependency>
 			<groupId>com.domain</groupId>
-			<artifactId>domain-utilities</artifactId>
+			<artifactId>sipas-utilities</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.domain</groupId>
-			<artifactId>dao-hibernate</artifactId>
+			<artifactId>sipas-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -63,7 +63,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.domainexample.DomainSpringBootApplication</mainClass>
+					<mainClass>co.com.coomeva.sipas.api.boot.DomainSpringBootApplication</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
 				<executions>

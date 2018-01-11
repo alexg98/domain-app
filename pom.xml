@@ -20,12 +20,12 @@
 	</properties>
 	
 	<modules>		
-		<module>domain-service</module>
-		<module>domain-utilities</module>		
-		<module>dao-hibernate</module>
-		<module>domain-bpm</module>
+		<module>domain-service</module>				
+		<module>sipas-core</module>
+		<module>sipas-service-bpm</module>
 		<module>database-util</module>
-		<module>sipas-api</module>
+		<module>sipas-api</module>		
+		<module>sipas-utilities</module>
 	</modules>
 	
 	<build>

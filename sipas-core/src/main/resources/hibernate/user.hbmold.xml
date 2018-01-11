@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/01/2013 08:59:16 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.User" table="users" schema="public">
+    	<id name="id" type="java.lang.Long">
+            <column name="id" precision="10" scale="0" />
+            <generator class="identity"/>        
+        </id>
+       <property name="firstName" type="java.lang.String">
+            <column name="first_name" precision="255" not-null="false" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="last_name" precision="255" not-null="false" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="phone" precision="30" not-null="true" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" precision="50" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -17,7 +17,6 @@ import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
-import org.hibernate.transform.ResultTransformer;
 import org.hibernate.type.Type;
 
 public abstract class AbstractQueryCustom {

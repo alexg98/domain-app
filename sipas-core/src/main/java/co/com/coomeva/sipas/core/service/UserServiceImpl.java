@@ -1,5 +1,7 @@
 package co.com.coomeva.sipas.core.service;
 
+import static co.com.coomeva.sipas.core.enums.EnumNamedQuerySipasdb.GET_PROTECCIONES_BY_ASECODIGO;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.com.coomeva.sipas.bpm.dataaccess.dao.IPersonDao;
 import co.com.coomeva.sipas.bpm.model.Person;
+import co.com.coomeva.sipas.core.config.dto.parametros.ParamRegistroProtecciones;
 import co.com.coomeva.sipas.core.dao.ISipParametroDao;
 import co.com.coomeva.sipas.core.dao.IUserDao;
 import co.com.coomeva.sipas.core.enums.EnumAcumulado;
+import co.com.coomeva.sipas.core.factory.ValidadorProteccionesFactory;
 import co.com.coomeva.sipas.core.model.SipParametros;
 import co.com.coomeva.sipas.core.model.User;
-import static co.com.coomeva.sipas.core.enums.EnumNamedQuerySipasdb.*;
+import co.com.coomeva.sipas.core.model.sipasdb.ClimaeDetallado;
+import co.com.coomeva.sipas.core.validaciones.protecciones.ValidadorProtecciones;
 
 
 
@@ -46,6 +51,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RepositoryService repositoryService;
+	
+	@Autowired
+    private ValidadorProteccionesFactory serviceLocatedFactory;
 	
 	@Override
 	public User save(User user) {
@@ -78,7 +86,19 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly=false)
 	public void test(User user) {
 		
-		Long acumuladoPerse = EnumAcumulado.PERSEVERANCIA.getAcumuladoByAsociado(152211l);
+		Long acumuladoPerse = EnumAcumulado.PERSEVERANCIA.getAcumuladoByAsociado(4536950l);
+		System.out.println("Acumulado perseverancia $" +acumuladoPerse);
+		ClimaeDetallado climae = new ClimaeDetallado();
+		
+		ParamRegistroProtecciones param = new ParamRegistroProtecciones();
+		param.setFechaNacimiento(new Date());
+		param.setClimae(climae);
+		param.getClimae().setFecNac("2018-01-14");
+		param.getClimae().setNumInt(4536950l);
+		
+		ValidadorProtecciones valid = serviceLocatedFactory.get("prodCodigo_99");
+		valid.validaCondicionesRegistro(param);
+		
 		
 		
 		System.out.println("Inicia " +new Date());

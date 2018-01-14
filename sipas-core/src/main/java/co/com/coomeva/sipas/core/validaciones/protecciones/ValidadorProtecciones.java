@@ -2,6 +2,8 @@ package co.com.coomeva.sipas.core.validaciones.protecciones;
 
 import java.util.function.Consumer;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import co.com.coomeva.sipas.core.config.dto.parametros.ParamRegistroProtecciones;
 import co.com.coomeva.sipas.util.excepciones.ValidRuntimeExceptionSipas;
 import co.com.coomeva.sipas.util.fechas.Utilfechas;
@@ -14,7 +16,7 @@ import co.com.coomeva.sipas.util.fechas.Utilfechas;
 public interface ValidadorProtecciones {
 	
 	Consumer<ParamRegistroProtecciones> validaFechaDeNacimiento = (param) -> {
-		if( !param.getFechaNacimiento().equals( Utilfechas.getDateFromString(param.getClimae().getFecNac()) )) 
+		if( !DateUtils.isSameDay(param.getFechaNacimiento(), Utilfechas.getDateFromString(param.getClimae().getFecNac() ))) 
 			throw new ValidRuntimeExceptionSipas("La fecha ingresada no es igual a la fecha de nacimiento del asociado");
 	};
 
@@ -37,7 +39,7 @@ public interface ValidadorProtecciones {
 		
 	Consumer<ParamRegistroProtecciones> validarProteccionesPendientesAprobacion = param -> RepositorioValidaciones.of(param);
 	
-	default public void validate(ParamRegistroProtecciones param) {
+	default void validate(ParamRegistroProtecciones param) {
 		validaFechaDeNacimiento.accept(param);
 		validarTopesMinimos.accept(param);
 		validarEdadMaximaDeRegistr.accept(param);

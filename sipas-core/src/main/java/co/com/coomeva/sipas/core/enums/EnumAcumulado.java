@@ -8,10 +8,9 @@ import static co.com.coomeva.sipas.core.enums.EnumAsegurabilidad.AMULADO_TOTAL;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import co.com.coomeva.sipas.bpm.context.ContextWrapper;
 import co.com.coomeva.sipas.core.dao.ISipProteccionesDao;
@@ -23,8 +22,6 @@ import co.com.coomeva.sipas.util.excepciones.NotFoundRuntimeExceptionSipas;
  * 
  *
  */
-@PropertySource(value = { "classpath:msg_excepciones.properties" })
-@Component
 public enum EnumAcumulado {
 	
 	PERSEVERANCIA {
@@ -52,7 +49,6 @@ public enum EnumAcumulado {
 		}		
 	};
 	
-	@Autowired
 	private Environment env;
 	
 	private ISipProteccionesDao dao;

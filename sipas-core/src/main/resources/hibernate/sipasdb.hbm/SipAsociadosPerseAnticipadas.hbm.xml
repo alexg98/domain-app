@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/08/2012 03:21:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipAsociadosPerseAnticipadas" table="SIP_ASOCIADOS_PERSE_ANTICIPADAS" schema="SIPASDB">
+        <id name="aspCodigo" type="java.lang.Long">
+            <column name="ASP_CODIGO" precision="20" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="aspNitcli" type="java.lang.Long">
+            <column name="ASP_NITCLI" precision="17" scale="0" not-null="true" />
+        </property>
+        <property name="aspValorDevolucionMaximo" type="java.lang.Long">
+            <column name="ASP_VALOR_DEVOLUCION_MAXIMO" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="aspUsuarioRegistro" type="java.lang.Long">
+            <column name="ASP_USUARIO_REGISTRO" precision="17" scale="0" not-null="true" />
+        </property>
+        <property name="aspFechaRegistro" type="java.util.Date">
+            <column name="ASP_FECHA_REGISTRO" length="26" not-null="true" />
+        </property>
+        <property name="aspUsuarioModificacion" type="java.lang.Long">
+            <column name="ASP_USUARIO_MODIFICACION" precision="17" scale="0" />
+        </property>
+        <property name="aspFechaModificacion" type="java.util.Date">
+            <column name="ASP_FECHA_MODIFICACION" length="26" />
+        </property>
+        <property name="aspEstado" type="java.lang.Long">
+            <column name="ASP_ESTADO" precision="5" scale="0" />
+        </property>
+          <property name="aspTipo" type="java.lang.Long">
+            <column name="ASP_Tipo" precision="5" scale="0" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

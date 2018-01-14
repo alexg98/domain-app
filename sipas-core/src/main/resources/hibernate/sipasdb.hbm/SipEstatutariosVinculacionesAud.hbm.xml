@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/12/2014 10:11:59 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipEstatutariosVinculacionesAud" table="SIP_ESTATUTARIOS_VINCULACIONES_AUD" schema="SIPASDB">
+        <id name="consecutivo" type="java.lang.Long">
+            <column name="CONSECUTIVO" precision="20" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="estatutario" type="java.lang.Byte">
+            <column name="ESTATUTARIO" precision="2" scale="0" />
+        </property>
+        <property name="vinculacionCodigo" type="java.lang.Short">
+            <column name="VINCULACION_CODIGO" precision="3" scale="0" />
+        </property>
+        <property name="valor" type="big_decimal">
+            <column name="VALOR" precision="10" scale="3" />
+        </property>
+        <property name="Fecha" type="java.util.Date">
+			<column name="FECHA" length="10" />
+		</property>
+		<property name="login" type="java.lang.String">
+            <column name="LOGIN" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

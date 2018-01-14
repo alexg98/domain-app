@@ -3,9 +3,9 @@ package co.com.coomeva.sipas.bpm.dataaccess.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import co.com.coomeva.sipas.databaseutil.dao.AbstractDomainexampleDAO;
+import co.com.coomeva.sipas.databaseutil.dao.AbstractSipasDAO;
 
-public class BaseHibernateDao<T> extends AbstractDomainexampleDAO<T> {
+public class BaseHibernateDao<T> extends AbstractSipasDAO<T> {
 
 	public BaseHibernateDao(Class<T> type, SessionFactory sessionFactory) {
 		super(type,sessionFactory);

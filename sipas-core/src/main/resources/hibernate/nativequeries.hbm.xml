@@ -2,11 +2,23 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
-	<query name="getTipoAuxilios">
-		select model from SipParametros model
+	<!-- 
+		TENER EN CUENTA EL NOMBRE DEL NAMED QUERY ESTE DEBE QUEDAR PARAMETRIZADO EN EL ENUM co.com.coomeva.sipas.core.enums.EnumNamedQuery, ESTE ES NECESARIO PARA EL
+		USO 
+	 	TENER PRESENTE EL ESTANDAR DEL NOMBRAMIENTO
+	 	(GET)_NOMBRE_DICIENTE_AL_RESULTADO
+	 -->
+	
+	<query name="GET_PROTECCIONES_BY_ASECODIGO">
+		select model 
+		from SipProtecciones model where model.sipProductos.prodCodigo in (
+			select ase.sipProductos.prodCodigo from SipProductosAsegurabilidad ase where ase.sipAsegurabilidad.aseCodigo = :aseCodigo 
+		)
+		and model.asoNumint = :asoNumint
+		and model.proEstado in (:proEstado)
 	</query>
 	
+		
 <!-- 
 	<sql-query name="test">
 		<return-scalar column="announcementId" type="java.lang.Long" />

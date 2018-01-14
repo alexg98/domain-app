@@ -81,7 +81,7 @@ public class HibernateConfig {
 		properties.put(AvailableSettings.DIALECT, env.getRequiredProperty("hibernate.dialect"));
 		properties.put(AvailableSettings.SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
 		properties.put(AvailableSettings.STATEMENT_BATCH_SIZE, env.getRequiredProperty("hibernate.batch.size"));
-		properties.put(AvailableSettings.HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
+		//properties.put(AvailableSettings.HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		properties.put(AvailableSettings.CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hibernate.current.session.context.class"));
 		
 		properties.put(AvailableSettings.FLUSH_BEFORE_COMPLETION, env.getRequiredProperty("hibernate.transaction.flush_before_completion"));
@@ -97,7 +97,7 @@ public class HibernateConfig {
 	    Resource[] resources = null;
 	    try {
 	        resources = ResourcePatternUtils.getResourcePatternResolver(rl)
-	                .getResources("classpath:/hibernate/*.hbm.xml");
+	                .getResources("classpath:/hibernate/**/*.hbm.xml");
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }

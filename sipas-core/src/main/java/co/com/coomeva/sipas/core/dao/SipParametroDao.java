@@ -14,7 +14,9 @@ import co.com.coomeva.sipas.core.model.SipParametros;
 @Scope("singleton")
 @Repository
 public class SipParametroDao extends BaseHibernateDao<SipParametros> implements ISipParametroDao {
-
+	
+	public static final String TIP_COD = "id.tipCod";
+	
 	@Autowired
 	public SipParametroDao(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		super(SipParametros.class, sessionFactory);

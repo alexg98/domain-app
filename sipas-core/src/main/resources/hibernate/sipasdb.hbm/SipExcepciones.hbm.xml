@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/08/2012 11:12:20 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipExcepciones" table="SIP_EXCEPCIONES" schema="SIPASDB">
+        <id name="excCodigo" type="java.lang.Long">
+            <column name="EXC_CODIGO" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="excDescripcion" type="java.lang.String">
+            <column name="EXC_DESCRIPCION" length="200" />
+        </property>
+        <property name="excMensaje" type="java.lang.String">
+            <column name="EXC_MENSAJE" length="200" />
+        </property>
+        <property name="excEstado" type="java.lang.Long">
+            <column name="EXC_ESTADO" precision="1" scale="0" />
+        </property>
+        <property name="excTipoFlujo" type="java.lang.Long">
+            <column name="EXC_TIPO_FLUJO" precision="5" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

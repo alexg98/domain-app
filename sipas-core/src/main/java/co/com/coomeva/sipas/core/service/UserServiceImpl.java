@@ -17,8 +17,11 @@ import co.com.coomeva.sipas.bpm.dataaccess.dao.IPersonDao;
 import co.com.coomeva.sipas.bpm.model.Person;
 import co.com.coomeva.sipas.core.dao.ISipParametroDao;
 import co.com.coomeva.sipas.core.dao.IUserDao;
+import co.com.coomeva.sipas.core.enums.EnumAcumulado;
 import co.com.coomeva.sipas.core.model.SipParametros;
 import co.com.coomeva.sipas.core.model.User;
+import static co.com.coomeva.sipas.core.enums.EnumNamedQuerySipasdb.*;
+
 
 
 
@@ -73,9 +76,13 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional(readOnly=false)
-	public void test(User user) {		
+	public void test(User user) {
+		
+		Long acumuladoPerse = EnumAcumulado.PERSEVERANCIA.getAcumuladoByAsociado(152211l);
+		
+		
 		System.out.println("Inicia " +new Date());
-		List<SipParametros> listn = this.userDao.getNamedQuery("getTipoAuxilios").list();
+		List<SipParametros> listn = this.userDao.getNamedQuery(GET_PROTECCIONES_BY_ASECODIGO).list();
 		System.out.println("Finaliza " +new Date());
 		this.sipParametroDao.findAll();
 				

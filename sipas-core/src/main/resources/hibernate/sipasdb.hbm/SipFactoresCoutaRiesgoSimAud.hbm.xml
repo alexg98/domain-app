@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/01/2015 10:24:13 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipFactoresCoutaRiesgoSimAud" table="SIP_FACTORES_COUTA_RIESGO_SIM_AUD" schema="SIPASDB">
+            <id name="consecutivo" type="java.lang.Long">
+           		 <column name="CONSECUTIVO" precision="20" scale="0" />
+            <generator class="assigned" />
+        	</id>
+            <property name="edad" type="short">
+                <column name="EDAD" precision="3" scale="0" />
+            </property>
+            <property name="plan" type="short">
+                <column name="PLAN" precision="3" scale="0" />
+            </property>
+            <property name="sexo" type="short">
+                <column name="SEXO" precision="3" scale="0" />
+            </property>
+        <property name="factorcuota" type="big_decimal">
+            <column name="FACTORCUOTA" precision="20" scale="10" />
+        </property>
+        <property name="Fecha" type="java.util.Date">
+			<column name="FECHA" length="10" />
+		</property>
+		<property name="login" type="java.lang.String">
+            <column name="LOGIN" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

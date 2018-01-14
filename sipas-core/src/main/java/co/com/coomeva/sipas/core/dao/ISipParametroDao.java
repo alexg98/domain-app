@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import co.com.coomeva.sipas.core.model.SipParametros;
-import co.com.coomeva.sipas.databaseutil.dao.IAbstractDomainexampleDAO;
+import co.com.coomeva.sipas.databaseutil.dao.IAbstractSipasDAO;
 
-public interface ISipParametroDao extends IAbstractDomainexampleDAO<SipParametros>{
+public interface ISipParametroDao extends IAbstractSipasDAO<SipParametros>{
 
 	List<SipParametros> test();
 	

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/01/2015 10:24:13 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipFactoresCoutaRiesgoSim" table="SIP_FACTORES_COUTA_RIESGO_SIM" schema="SIPASDB">
+        <composite-id name="id" class="co.com.coomeva.sipas.core.model.sipasdb.SipFactoresCoutaRiesgoSimId">
+            <key-property name="edad" type="short">
+                <column name="EDAD" precision="3" scale="0" />
+            </key-property>
+            <key-property name="plan" type="short">
+                <column name="PLAN" precision="3" scale="0" />
+            </key-property>
+            <key-property name="sexo" type="short">
+                <column name="SEXO" precision="3" scale="0" />
+            </key-property>
+        </composite-id>
+        <property name="factorcuota" type="big_decimal">
+            <column name="FACTORCUOTA" precision="20" scale="10" />
+        </property>
+    </class>
+</hibernate-mapping>

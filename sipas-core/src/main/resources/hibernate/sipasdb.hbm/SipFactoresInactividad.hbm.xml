@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2011 12:27:04 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="co.com.coomeva.sipas.core.model.sipasdb.SipFactoresInactividad" table="SIP_FACTORES_INACTIVIDAD" schema="SIPASDB">
+        <composite-id name="id" class="co.com.coomeva.sipas.core.model.sipasdb.SipFactoresInactividadId">
+            <key-property name="factorCodigo" type="java.lang.Long">
+                <column name="FACTOR_CODIGO" precision="20" scale="0" />
+            </key-property>
+            <key-property name="perCodigo" type="java.lang.Long">
+                <column name="PER_CODIGO" precision="5" scale="0" />
+            </key-property>
+            <key-property name="prodCodigo" type="java.lang.Long">
+                <column name="PROD_CODIGO" precision="4" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="sipPeriodos" class="co.com.coomeva.sipas.core.model.sipasdb.SipPeriodos" update="false" insert="false" fetch="select">
+            <column name="PER_CODIGO" precision="5" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sipProductos" class="co.com.coomeva.sipas.core.model.sipasdb.SipProductos" update="false" insert="false" fetch="select">
+            <column name="PROD_CODIGO" precision="4" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="edad" type="java.lang.Long">
+            <column name="EDAD" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="genero" type="java.lang.String">
+            <column name="GENERO" length="1" not-null="true" />
+        </property>
+        <property name="valor" type="java.lang.Double">
+            <column name="VALOR" precision="12" scale="8" not-null="true" />
+        </property>
+        <property name="ano" type="java.lang.Long">
+            <column name="ANO" precision="4" scale="0" not-null="true" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="USUARIO" length="10" not-null="true" />
+        </property>
+        <property name="fechaRegistro" type="java.util.Date">
+            <column name="FECHA_REGISTRO" length="26" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

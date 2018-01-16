@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import co.com.coomeva.sipas.core.model.SipParametros;
+import co.com.coomeva.sipas.util.annotations.EvictSession;
 
 @Scope("singleton")
 @Repository
@@ -31,10 +32,10 @@ public class SipParametroDao extends BaseHibernateDao<SipParametros> implements 
 	}
 
 	@Override
+	@EvictSession
 	public Optional<SipParametros> getParametroPorTipCodCAndCodigo(Long id) {
 		SipParametros parametros = findById(id);
 		return Optional.of(parametros);
-	}
-	
+	}	
 	
 }

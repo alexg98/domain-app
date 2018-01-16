@@ -15,18 +15,6 @@ import co.com.coomeva.sipas.core.model.sipasdb.SipProtecciones;
 @Scope("singleton")
 @Repository
 public class SipProteccionesDao extends BaseHibernateDao<SipProtecciones> implements ISipProteccionesDao {
-
-	public static final String CONSECUTIVO = "consecutivo";
-	public static final String PRO_COD = "sipProtecciones.proCod";
-	public static final String FACTOR_CODIGO = "sipFactores.factorCodigo";
-	public static final String CODIGO = "codigo";
-	public static final String PRO_VALOR = "proValor";
-	public static final String PRO_CUOTA = "proCuota";
-	public static final String PRO_VALOR_SOLICITADO = "proValorSolicitado";
-	public static final String PRO_FECHA_REGISTRO = "proFechaRegistro";
-	public static final String PRO_FECHA_SOLICITUD = "proFechaSolicitud";
-	public static final String PRO_FECHA_REQUISITOS = "proFechaRequisitos";
-	public static final String PRO_FECHA_VIGENCIA = "proFechaVigencia";
 	
 	@Autowired
 	public SipProteccionesDao(@Qualifier("sessionFactory") SessionFactory sessionFactory) {

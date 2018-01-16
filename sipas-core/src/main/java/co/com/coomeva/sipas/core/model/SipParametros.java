@@ -13,7 +13,11 @@ public class SipParametros  implements java.io.Serializable, Comparable {
 
     // Fields    
 
-     private SipParametrosId id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3410084026909427766L;
+	private SipParametrosId id;
      private SipParametrosTipo sipParametrosTipo;
      private String nombre;
      private String nombreCorto;

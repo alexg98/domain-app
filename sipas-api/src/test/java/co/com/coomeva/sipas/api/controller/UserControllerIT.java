@@ -34,15 +34,15 @@ public class UserControllerIT {
                 .webAppContextSetup(this.webApplicationContext)
                 .build();
     }
-    
-    @Test
+        
+	@Test
     public void getProteccionesByAsonumint() throws Exception{
     	String jsonExpected = "{\"id\":1234,\"info\":\"Info 1234\",\"creationDateTime\":\"2001-12-12T13:40:30\"}";
     	
     	mockMvc.perform(get("/protecciones/list/{asociado}", INFO_ID_1234))
         .andExpect(status().isOk())
-        .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-        //.andExpect((content().string(jsonExpected)));        		
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect((content().string(jsonExpected)));        		
     }
 
     /*

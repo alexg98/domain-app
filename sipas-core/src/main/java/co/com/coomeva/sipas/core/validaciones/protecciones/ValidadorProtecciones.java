@@ -40,13 +40,18 @@ public interface ValidadorProtecciones {
 	Consumer<ParamRegistroProtecciones> validarProteccionesPendientesAprobacion = param -> RepositorioValidaciones.of(param);
 	
 	default void validate(ParamRegistroProtecciones param) {
+		throw new RuntimeException("Metodo  no implementado");
+	}
+	/**
+	 * Validaciones por defecto necesarias para la grabacion de una proteccion
+	 * @param param
+	 */
+	default void validaCondicionesDeRegistro(ParamRegistroProtecciones param) {
 		validaFechaDeNacimiento.accept(param);
 		validarTopesMinimos.accept(param);
 		validarEdadMaximaDeRegistr.accept(param);
 		validarRegistroDeProteccionPropias.accept(param);
 	}
-	
-	void validaCondicionesRegistro(ParamRegistroProtecciones param);
 	
 	void validaCondicionesDisminucion(ParamRegistroProtecciones param);
 }

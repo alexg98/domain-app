@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import co.com.coomeva.sipas.core.factory.AdministracionProteccionesFactory;
 import co.com.coomeva.sipas.core.factory.ValidadorProteccionesFactory;
 
 @Configuration
@@ -15,6 +16,16 @@ public class FactoriesConfig {
 	public ServiceLocatorFactoryBean slfbValidadorProteccionesFactory() {  
 		ServiceLocatorFactoryBean slfb = new ServiceLocatorFactoryBean();
 		slfb.setServiceLocatorInterface(ValidadorProteccionesFactory.class);
+		return slfb;
+	}
+	/**
+	 * Factoria para la administracion de productos
+	 * @return
+	 */
+	@Bean
+	public ServiceLocatorFactoryBean slfbAdministrarProteccionesFactory() {  
+		ServiceLocatorFactoryBean slfb = new ServiceLocatorFactoryBean();
+		slfb.setServiceLocatorInterface(AdministracionProteccionesFactory.class);
 		return slfb;
 	}
 }

@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
 		param.getClimae().setNumInt(4536950l);
 		
 		ValidadorProtecciones valid = serviceLocatedFactory.get("prodCodigo_99");
-		valid.validaCondicionesRegistro(param);
+		valid.validaCondicionesDeRegistro(param);
 		
 		
 		

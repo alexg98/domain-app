@@ -33,7 +33,7 @@ public class ProteccionServiceImpl implements ProteccionService{
 		EnumAcumulado.ADICIONAL.getAcumuladoByAsociado(asoNumint); 
 		
 		ValidadorProtecciones valid = serviceLocatedFactory.get("prodcodigo_99");
-		valid.validaCondicionesRegistro(null);	
+		valid.validaCondicionesDeRegistro(null);	
 	}
 
 	@Override

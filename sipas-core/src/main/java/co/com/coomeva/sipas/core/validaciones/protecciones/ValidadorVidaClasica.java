@@ -22,8 +22,7 @@ public class ValidadorVidaClasica implements ValidadorProtecciones {
 		RepositorioValidaciones.of(param).validarProteccionesPendientesAprobacion(param,  VIDA_CLASICO.getProdCodigo());
 	
 	@Override
-	public void validaCondicionesRegistro(ParamRegistroProtecciones param) {
-		//validate(param);		
+	public void validaCondicionesDeRegistro(ParamRegistroProtecciones param) {				
 		validarEstadoAsociado.accept(param);
 		validarProteccionesPendientesAprobacion.accept(param);
 	}

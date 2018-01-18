@@ -44,6 +44,7 @@ public class ProteccionesAdmin {
 	}
 }
 
+
 interface AdminProtecciones {
 	void registrarProteccion();
 	void registrarIncremento();

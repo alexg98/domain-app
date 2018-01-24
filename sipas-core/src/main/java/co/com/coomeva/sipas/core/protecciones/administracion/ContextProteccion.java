@@ -31,7 +31,7 @@ public class ContextProteccion {
 		ValidadorProtecciones valid = serviceValidFactory.get("prodcodigo_99");
 		valid.validaCondicionesDeRegistro(param);
 		
-		IAdminProtecciones admin = serviceLocatedFactory.get("prodcodigo_99");
+		IProteccionesStrategy admin = null;//serviceLocatedFactory.get("prodcodigo_99");
 		admin.registrarProteccion(param);
 		admin.registrarIncremento(param);
 		return null;

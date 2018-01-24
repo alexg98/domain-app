@@ -32,4 +32,10 @@ public class ProteccionesController {
 		proteccionesService.registrarIncremento();
 		return "Acceso metodo publico";
 	}
+	
+	@RequestMapping(value ="/add", method = RequestMethod.GET)
+	public String registrarProteccion() {
+		proteccionesService.registrarIncremento();
+		return null;
+	}
 }

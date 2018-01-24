@@ -20,15 +20,22 @@ public class ValidadorVidaClasica implements ValidadorProtecciones {
 	
 	Consumer<ParamRegistroProtecciones> validarProteccionesPendientesAprobacion = (param) -> 
 		RepositorioValidaciones.of(param).validarProteccionesPendientesAprobacion(param,  VIDA_CLASICO.getProdCodigo());
-	
+			
+	/**
+	 * Valida las condiciones necesarias para la grabacion de una proteccion, como primera instancia se 
+	 * invocan las validaciones generales parametrizadas en la interfaz ValidadorProtecciones
+	 * @param  ParamRegistroProtecciones param
+	 */
 	@Override
-	public void validaCondicionesDeRegistro(ParamRegistroProtecciones param) {				
+	public void validaCondicionesDeRegistro(ParamRegistroProtecciones param) {
+		ValidadorProtecciones.super.validaCondicionesDeRegistro(param);
 		validarEstadoAsociado.accept(param);
 		validarProteccionesPendientesAprobacion.accept(param);
 	}
 
 	@Override
 	public void validaCondicionesDisminucion(ParamRegistroProtecciones param) {
+		ValidadorProtecciones.super.validaCondicionesDisminucion(param);
 		throw new RuntimeExceptionSipas("Metodo no soportado");
 	}	
 }

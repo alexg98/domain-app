@@ -39,9 +39,6 @@ public interface ValidadorProtecciones {
 		
 	Consumer<ParamRegistroProtecciones> validarProteccionesPendientesAprobacion = param -> RepositorioValidaciones.of(param);
 	
-	default void validate(ParamRegistroProtecciones param) {
-		throw new RuntimeException("Metodo  no implementado");
-	}
 	/**
 	 * Validaciones por defecto necesarias para la grabacion de una proteccion
 	 * @param param
@@ -53,5 +50,7 @@ public interface ValidadorProtecciones {
 		validarRegistroDeProteccionPropias.accept(param);
 	}
 	
-	void validaCondicionesDisminucion(ParamRegistroProtecciones param);
+	default void validaCondicionesDisminucion(ParamRegistroProtecciones param) {
+		validaFechaDeNacimiento.accept(param);
+	}
 }

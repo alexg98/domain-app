@@ -22,8 +22,7 @@ import co.com.coomeva.sipas.util.excepciones.RuntimeExceptionSipas;
  * @param <T>
  */
 public class RepositorioValidaciones<T> {
-	
-	@SuppressWarnings("unused")
+		
 	private final T value;
 	
 	private ISipProteccionesEventosDao sipProteccionesEventosDao;

@@ -1,37 +1,38 @@
-package co.com.coomeva.sipas.core.protecciones.administracion;
+package co.com.coomeva.sipas.core.protecciones.template;
+
+import org.springframework.stereotype.Component;
 
 import co.com.coomeva.sipas.core.config.dto.parametros.ParamRegistroProtecciones;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProtecciones;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProteccionesEventos;
 import co.com.coomeva.sipas.util.excepciones.RuntimeExceptionSipas;
-/**
- * Clase generica con los metodos propios para la creacion de cualquier proteccion
- * @author alge3325
- *
- */
-public class GenericAdminProtecciones {
+
+@Component
+public class ProteccionVidaClasica extends AbstractProteccionTemplate {
+
 	/**
-	 * Crer proteccione
-	 * @param param
-	 * @return
+	 * Creacion del producto vida clasico
 	 */
+	@Override
 	public SipProtecciones registrarProteccion(ParamRegistroProtecciones param) {
-		throw new RuntimeExceptionSipas("Operacion no soportada");
+		if(param.getProdCodigo() == null){
+			
+		}
+		return null;
 	}
+
 	/**
-	 * Registrar incrmento
-	 * @param param
-	 * @return
-	 */	
-	public SipProteccionesEventos registrarIncremento(ParamRegistroProtecciones param) {
-		throw new RuntimeExceptionSipas("Operacion no soportada");
-	}
-	/**
-	 * Registrar Disminucion
-	 * @param param
-	 * @return
+	 * Logica generica para la creacion de un incremento
 	 */
+	@Override
+	public SipProteccionesEventos registrarIncremento(ParamRegistroProtecciones param) {
+		throw new RuntimeExceptionSipas("Metodo no implementado");
+	}
+	/**
+	 * Logica generica para la creacion de una disminucion
+	 */
+	@Override
 	public SipProteccionesEventos registrarDisminucion(ParamRegistroProtecciones param) {
-		throw new RuntimeExceptionSipas("Operacion no soportada");
+		throw new RuntimeExceptionSipas("Metodo no implementado");
 	}
 }

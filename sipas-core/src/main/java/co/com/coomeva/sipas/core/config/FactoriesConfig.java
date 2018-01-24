@@ -12,7 +12,7 @@ import co.com.coomeva.sipas.core.factory.ValidadorProteccionesFactory;
 @EnableTransactionManagement
 public class FactoriesConfig {
 
-	@Bean
+	@Bean("factoryValidadorProtecciones")
 	public ServiceLocatorFactoryBean slfbValidadorProteccionesFactory() {  
 		ServiceLocatorFactoryBean slfb = new ServiceLocatorFactoryBean();
 		slfb.setServiceLocatorInterface(ValidadorProteccionesFactory.class);
@@ -22,7 +22,7 @@ public class FactoriesConfig {
 	 * Factoria para la administracion de productos
 	 * @return
 	 */
-	@Bean
+	@Bean("factoryProteccionesTemplate")
 	public ServiceLocatorFactoryBean slfbAdministrarProteccionesFactory() {  
 		ServiceLocatorFactoryBean slfb = new ServiceLocatorFactoryBean();
 		slfb.setServiceLocatorInterface(AdministracionProteccionesFactory.class);

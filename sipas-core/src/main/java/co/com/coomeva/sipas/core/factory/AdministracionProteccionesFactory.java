@@ -1,8 +1,8 @@
 package co.com.coomeva.sipas.core.factory;
 
-import co.com.coomeva.sipas.core.protecciones.administracion.IAdminProtecciones;
+import co.com.coomeva.sipas.core.protecciones.template.AbstractProteccionTemplate;
 
 public interface AdministracionProteccionesFactory {
 	
-	IAdminProtecciones get(String proucto);
+	AbstractProteccionTemplate get(String proucto);
 }

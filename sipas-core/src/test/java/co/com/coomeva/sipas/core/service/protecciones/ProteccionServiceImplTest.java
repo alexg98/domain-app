@@ -25,7 +25,8 @@ public class ProteccionServiceImplTest {
     BusinessService businessImpl;
     
     @Test
-    public void testFindTheGreatestFromAllData() {
+    public void testFindTheGreatestFromAllData() {   			
+		
         when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {24,15,3});
         assertEquals(24, businessImpl.findTheGreatestFromAllData());
     }

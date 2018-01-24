@@ -10,6 +10,7 @@ public class ParamRegistroProtecciones {
 	Date fechaNacimiento;
 	Long promotor;
 	Long usuario;
+	Long prodCodigo;
 	
 	public ClimaeDetallado getClimae() {
 		return climae;
@@ -35,4 +36,11 @@ public class ParamRegistroProtecciones {
 	public void setUsuario(Long usuario) {
 		this.usuario = usuario;
 	}
+	public Long getProdCodigo() {
+		return prodCodigo;
+	}
+	public void setProdCodigo(Long prodCodigo) {
+		this.prodCodigo = prodCodigo;
+	}
+	
 }

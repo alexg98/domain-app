@@ -18,11 +18,11 @@ import co.com.coomeva.sipas.api.exceptions.exception.OrderNotFoundException;
 
 @RestController
 @RequestMapping("/local")
-public class ExceptionHandlingController {
+public class ExceptionHandlingController1 {
 
 	protected Logger logger;
 
-	public ExceptionHandlingController() {
+	public ExceptionHandlingController1() {
 		logger = LoggerFactory.getLogger(getClass());
 	}
 

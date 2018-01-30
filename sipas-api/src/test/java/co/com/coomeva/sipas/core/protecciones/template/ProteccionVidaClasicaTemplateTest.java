@@ -31,7 +31,7 @@ public class ProteccionVidaClasicaTemplateTest {
 			service.getProteccioneByAsonumint(1252l);
 		
 			ParamRegistroProtecciones param = new ParamRegistroProtecciones();		
-			AbstractProteccionTemplate template = FactoryProxy.of("99").getProteccionTemplate();
+			IProteccionTemplate template = FactoryProxy.of("99").getProteccionTemplate();
 			template.ejecutarIncremento(param);			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -23,4 +23,7 @@ public interface IProteccionTemplate {
 	 * @return
 	 */
 	SipProteccionesEventos registrarDisminucion(ParamRegistroProtecciones param);
+	
+	
+	void ejecutarIncremento(ParamRegistroProtecciones param);
 }

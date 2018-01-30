@@ -1,24 +1,14 @@
 package co.com.coomeva.sipas.core.factory;
 
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.core.env.Environment;
-
 import co.com.coomeva.sipas.bpm.context.ContextWrapper;
-import co.com.coomeva.sipas.core.protecciones.template.AbstractProteccionTemplate;
 import co.com.coomeva.sipas.core.protecciones.template.DefaultProteccionTemplate;
+import co.com.coomeva.sipas.core.protecciones.template.IProteccionTemplate;
 import co.com.coomeva.sipas.core.validaciones.protecciones.DefaultValidadorProtecciones;
 import co.com.coomeva.sipas.core.validaciones.protecciones.ValidadorProtecciones;
 
-//@PropertySource(value = { "classpath:/validadores_producto.properties"})
-
-@PropertySources({ @PropertySource(value = "classpath:validadores_producto.properties"),
-	 @PropertySource(value = "classpath:factory_producto.properties") })
 public final class FactoryProxy {
 
 	private final String codigoFactory;
-	
-	private static Environment env;
 	
     private static ValidadorProteccionesFactory serviceLocatedFactory;
 
@@ -28,7 +18,6 @@ public final class FactoryProxy {
 	private FactoryProxy(String codigoFactory) {
 		serviceLocatedFactory = ContextWrapper.getContext().getBean("factoryValidadorProtecciones", ValidadorProteccionesFactory.class);
 		serviceLocatedFactoryAdmin = ContextWrapper.getContext().getBean("factoryProteccionesTemplate", AdministracionProteccionesFactory.class);
-		env = ContextWrapper.getContext().getEnvironment();
 		this.codigoFactory = codigoFactory;
 	}
 	
@@ -43,19 +32,19 @@ public final class FactoryProxy {
 	 * @param param codigo del producto
 	 * @return ValidadorProtecciones
 	 */
-	public synchronized ValidadorProtecciones getValidadorProteccion() {		
-		String validor =  env.getProperty(codigoFactory);	
-		if(validor == null) {
+	public synchronized ValidadorProtecciones getValidadorProteccion() {
+		ValidadorProtecciones validador = serviceLocatedFactory.get("validador_"+codigoFactory);
+		if(validador == null) {
 			return new DefaultValidadorProtecciones();
 		}
-		return serviceLocatedFactory.get(validor);
+		return validador;
 	}
 	
-	public synchronized AbstractProteccionTemplate getProteccionTemplate() {		
-		String template =  env.getProperty(codigoFactory);		
+	public synchronized IProteccionTemplate getProteccionTemplate() {
+		IProteccionTemplate template = serviceLocatedFactoryAdmin.get("template_"+codigoFactory);		
 		if(template == null) {
 			return new DefaultProteccionTemplate();
 		}
-		return serviceLocatedFactoryAdmin.get(template);
+		return template;
 	}	
 }

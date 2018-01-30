@@ -1,6 +1,5 @@
 package co.com.coomeva.sipas.core.protecciones.template;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.com.coomeva.sipas.core.config.dto.parametros.ParamRegistroProtecciones;

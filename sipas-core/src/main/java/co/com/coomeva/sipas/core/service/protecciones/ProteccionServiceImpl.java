@@ -13,7 +13,7 @@ import co.com.coomeva.sipas.core.enums.EnumAcumulado;
 import co.com.coomeva.sipas.core.factory.FactoryProxy;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProtecciones;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProteccionesEventos;
-import co.com.coomeva.sipas.core.protecciones.template.AbstractProteccionTemplate;
+import co.com.coomeva.sipas.core.protecciones.template.IProteccionTemplate;
 import co.com.coomeva.sipas.util.annotations.EvictSession;
 /**
  * Clase encargada de la administracion de las protecciones
@@ -27,7 +27,7 @@ public class ProteccionServiceImpl implements ProteccionService{
 	@Autowired
 	ISipProteccionesDao dao;
 	
-	private AbstractProteccionTemplate absTemplateProtec = null;
+	private IProteccionTemplate absTemplateProtec = null;
 		
 	@Override
 	public void registrarIncremento() {
@@ -42,9 +42,11 @@ public class ProteccionServiceImpl implements ProteccionService{
 		list.get(0).setConsecutivo(99l);
 		
 		ParamRegistroProtecciones param = new ParamRegistroProtecciones();
+		param.setProdCodigo(99l);
 		
-		
-		list.forEach( n -> {			 
+		//--Registrar proteccion
+		list.forEach( n -> {	
+			//Ejecuta el proceso por cada producto
 			absTemplateProtec = FactoryProxy.of( n.getConsecutivo().toString() ).getProteccionTemplate();
 			absTemplateProtec.ejecutarIncremento(param);			
 		});			

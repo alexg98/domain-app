@@ -39,6 +39,11 @@ public interface ValidadorProtecciones {
 		
 	Consumer<ParamRegistroProtecciones> validarProteccionesPendientesAprobacion = param -> RepositorioValidaciones.of(param);
 	
+	Consumer<ParamRegistroProtecciones> usuarioRegistraPropioIncrementoODisminucion = param -> {
+		if( param.getUsuario().equals(param.getClimae().getNitCli()))
+			throw new ValidRuntimeExceptionSipas("No se puede registrar Incremento/Disminuciones as\\u00ED mismo");
+	};
+	
 	/**
 	 * Validaciones por defecto necesarias para la grabacion de una proteccion
 	 * @param param
@@ -47,7 +52,7 @@ public interface ValidadorProtecciones {
 		validaFechaDeNacimiento.accept(param);
 		validarTopesMinimos.accept(param);
 		validarEdadMaximaDeRegistr.accept(param);
-		validarRegistroDeProteccionPropias.accept(param);
+		validarRegistroDeProteccionPropias.accept(param);		
 	}
 	
 	default void validaCondicionesDisminucion(ParamRegistroProtecciones param) {

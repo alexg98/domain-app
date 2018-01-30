@@ -7,7 +7,7 @@ import co.com.coomeva.sipas.core.model.sipasdb.SipProtecciones;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProteccionesEventos;
 import co.com.coomeva.sipas.util.excepciones.RuntimeExceptionSipas;
 
-@Component
+@Component("template_99")
 public class ProteccionVidaClasica extends AbstractProteccionTemplate {
 
 	/**

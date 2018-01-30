@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.coomeva.sipas.api.controller.HandlerException.ExceptionHandlingController;
 import co.com.coomeva.sipas.core.model.sipasdb.SipProtecciones;
 import co.com.coomeva.sipas.core.service.protecciones.ProteccionService;
 
 @RestController
 @RequestMapping(value="/protecciones")
-public class ProteccionesController {
+public class ProteccionesController extends ExceptionHandlingController{
 
 	@Autowired
 	ProteccionService proteccionesService;
@@ -35,7 +36,7 @@ public class ProteccionesController {
 	
 	@RequestMapping(value ="/add", method = RequestMethod.GET)
 	public String registrarProteccion() {
-		proteccionesService.registrarIncremento();
+		proteccionesService.registrarIncremento();		
 		return null;
 	}
 }

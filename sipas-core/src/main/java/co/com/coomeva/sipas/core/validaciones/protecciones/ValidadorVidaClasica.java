@@ -13,7 +13,7 @@ import co.com.coomeva.sipas.util.excepciones.RuntimeExceptionSipas;
  * @author alge3325
  *
  */          
-@Component("prodCodigo_99")
+@Component("validador_99")
 public class ValidadorVidaClasica implements ValidadorProtecciones {
 	
 	Consumer<ParamRegistroProtecciones> validarEstadoAsociado = (param) -> param.getClimae();
